@@ -17,9 +17,12 @@ public class JsonToXmlController {
   @Autowired
   ConverterFactory converterFactory;
 
+  /**
+   * Given the json input, converts the json to xml.
+   */
   @PostMapping(consumes = MediaType.TEXT_PLAIN_VALUE)
   public ResponseEntity<?> convertToXml(@RequestBody String data) {
-    String xmlData = converterFactory.convertJSONtoXML(data);
+    String xmlData = converterFactory.convertJsonToXml(data);
     if (xmlData == null) {
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }

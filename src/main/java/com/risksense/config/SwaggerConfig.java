@@ -18,31 +18,34 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    @Autowired
-    BuildProperties buildProperties;
+  @Autowired
+  BuildProperties buildProperties;
 
-    @Autowired
-    GitProperties gitProperties;
+  @Autowired
+  GitProperties gitProperties;
 
-    @Bean
-    public Docket api() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.any())
-                .build()
-                .apiInfo(apiEndPointsInfo());
-    }
+  /**
+   * Creates the information required to show in swagger ui.
+   */
+  @Bean
+  public Docket api() {
+    return new Docket(DocumentationType.SWAGGER_2)
+        .select()
+        .apis(RequestHandlerSelectors.any())
+        .paths(PathSelectors.any())
+        .build()
+        .apiInfo(apiEndPointsInfo());
+  }
 
-    private ApiInfo apiEndPointsInfo() {
-        return new ApiInfoBuilder().title("Json to XML converter")
-                .description("Built by " + gitProperties.get("build.user.name")
-                    + " with code " + gitProperties.getShortCommitId()
-                    + " from branch " + gitProperties.getBranch())
-                .contact(new Contact("Malathi", "", "malu.t90@gmail.com"))
-                .license("Apache 2.0")
-                .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
-                .version(buildProperties.getVersion())
-                .build();
-    }
+  private ApiInfo apiEndPointsInfo() {
+    return new ApiInfoBuilder().title("Json to XML converter")
+        .description("Built by " + gitProperties.get("build.user.name")
+            + " with code " + gitProperties.getShortCommitId()
+            + " from branch " + gitProperties.getBranch())
+        .contact(new Contact("Malathi", "", "malu.t90@gmail.com"))
+        .license("Apache 2.0")
+        .licenseUrl("http://www.apache.org/licenses/LICENSE-2.0.html")
+        .version(buildProperties.getVersion())
+        .build();
+  }
 }

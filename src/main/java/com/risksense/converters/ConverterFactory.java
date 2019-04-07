@@ -1,11 +1,11 @@
 package com.risksense.converters;
 
+import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
-import java.util.Iterator;
 
 /**
  * Factory class for creating instances of {@link XmlJsonConverterI}.
@@ -14,7 +14,7 @@ import java.util.Iterator;
 public class ConverterFactory implements XmlJsonConverterI {
 
   @Override
-  public String convertJSONtoXML(String data) {
+  public String convertJsonToXml(String data) {
     Object jsonData;
 
     try {
