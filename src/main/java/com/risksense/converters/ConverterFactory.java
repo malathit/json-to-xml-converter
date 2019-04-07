@@ -5,11 +5,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
+
 /**
  * Factory class for creating instances of {@link XmlJsonConverterI}.
  */
 @Service
-public final class ConverterFactory implements XmlJsonConverterI {
+public class ConverterFactory implements XmlJsonConverterI {
 
   @Override
   public String convertJSONtoXML(String data) {
@@ -48,7 +50,9 @@ public final class ConverterFactory implements XmlJsonConverterI {
       return builder.toString();
     } else if (data instanceof JSONObject) {
       StringBuilder builder = new StringBuilder("<object" + nameValue + ">");
-      for (String key : ((JSONObject) data).keySet()) {
+      Iterator it = ((JSONObject) data).keys();
+      while (it.hasNext()) {
+        String key = it.next().toString();
         Object objData = ((JSONObject) data).get(key);
         builder.append(convertToXml(key, objData));
       }
