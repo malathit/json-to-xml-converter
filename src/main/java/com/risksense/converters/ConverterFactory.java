@@ -4,6 +4,8 @@ import java.util.Iterator;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class ConverterFactory implements XmlJsonConverterI {
+
+  private static final Logger logger = LoggerFactory.getLogger(ConverterFactory.class);
 
   @Override
   public String convertJsonToXml(String data) {
@@ -31,9 +35,6 @@ public class ConverterFactory implements XmlJsonConverterI {
   }
 
   private String convertToXml(String name, Object data) {
-    if (name == "lastName") {
-      System.out.println("type of lastName : " + name == null);
-    }
     String nameValue = (name == null) ? "" : " name=\"" + name + "\"";
     if (data instanceof Number) {
       return "<number" + nameValue + ">" + data + "</number>";
