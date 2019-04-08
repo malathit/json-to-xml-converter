@@ -42,7 +42,7 @@ The file `src/test/resources/example.json` contains a valid json input. The xml 
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [releases on this repository](https://github.com/malathit90/json-to-xml-converter/releases).
 
 ## License
 
