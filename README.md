@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 git clone https://github.com/malathit90/json-to-xml-converter.git
 mvn spring-boot:run
 ```
-The server will be up and running on port 8080. Go to `http://localhost:8080/swagger-ui.html`
+Go to `http://localhost:8080/swagger-ui.html`. Call the api `/api/v1/json2xml`.
 
 ### Prerequisites
 
@@ -31,6 +31,81 @@ There are 2 basic test cases.
 - The other test case gives an invalid json and checks if a bad request(400) response is given
 
 ### How Json to xml conversion happens
+The json to xml conversion doesn't necessarily happen in a single way. In this project, the following is the way xml conversion happens.
+Also, the code takes as input only valid json objects and arrays.
+
+#### Json Number
+A json element with a number as a value should map to an XML element named `<number>`.
+
+    {"a" : 5}
+
+The above json could be mapped as :
+
+    <object>
+        <number name='a'>
+            5
+        </number>
+    </object> 
+
+#### Json String
+A json element with a string as a value should map to an XML element named `<number>`.
+
+    {"s" : "cjdb"}
+
+The above json could be mapped as :
+
+    <object>
+        <string name='s'>
+            cjdb
+        </string>
+    </object> 
+
+
+#### Json Boolean
+A json element with a boolean (true or false) as a value should map to an XML element named `<boolean>`.
+
+    {"b" : true}
+
+The above json could be mapped as :
+
+    <object>
+        <boolean name='b'>
+            true
+        </boolean>
+    </object> 
+
+#### Json Array
+A json element with a array as a value should map to an XML element named `<array>`.
+
+
+    [ 1, 4, "jur", { "firstName" : "xyx" }]
+
+The above json could be mapped as :
+
+    <object>
+        <array>
+            <number>1</number>
+            <number>4</number>
+            <string>jun</string>
+            <object>
+                <string name = 'firstName'>xyx</string>
+            </object>
+        </array>
+    </object> 
+
+#### Json NULL
+A json element with a number as a value should map to an XML element named `<number>`.
+
+    {"a" : null}
+
+The above json could be mapped as :
+
+    <object>
+        <null/>
+    </object> 
+
+
+### Example files
 The file `src/test/resources/example.json` contains a valid json input. The xml conversion for the example.json file can be found at `src/main/resources/example.xml`
 
 ## Built With
