@@ -101,7 +101,7 @@ A json element with a number as a value should map to an XML element named `<num
 The above json could be mapped as :
 
     <object>
-        <null/>
+        <null name = 'a' />
     </object> 
 
 
