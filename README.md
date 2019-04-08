@@ -1,6 +1,6 @@
 # Json2Xml
 
-This is a simple rest webservice that converts json input to xml format
+This is a simple rest web service that converts json input to xml format
 
 ## Getting Started
 
